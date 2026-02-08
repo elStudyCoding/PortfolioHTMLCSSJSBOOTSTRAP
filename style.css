@@ -60,16 +60,43 @@ body {
 }
 
 .profile-frame {
-    width: 140px;
-    height: 140px;
+    width: 170px;
+    height: 170px;
     margin: 14px auto 16px;
-    border-radius: 26px;
+    border-radius: 50%;
     padding: 6px;
     background: linear-gradient(140deg, #ffffff, #e9e9e9);
     box-shadow: 0 26px 70px rgba(17, 17, 17, 0.18);
     transform-style: preserve-3d;
     perspective: 900px;
     transition: transform 120ms ease, box-shadow 250ms ease, background 220ms ease, border-color 220ms ease;
+    position: relative;
+    isolation: isolate;
+}
+
+.profile-frame::before,
+.profile-frame::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.profile-frame::before {
+    background: conic-gradient(from 180deg, #ffffff, #cfcfcf, #111111, #e9e9e9, #ffffff);
+    filter: blur(0.4px);
+    opacity: 0.85;
+    z-index: -2;
+}
+
+.profile-frame::after {
+    inset: -2px;
+    border: 1px solid rgba(17, 17, 17, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7),
+        0 0 18px rgba(255, 255, 255, 0.35),
+        0 0 40px rgba(140, 140, 140, 0.25);
+    z-index: -1;
 }
 
 .profile-frame:hover {
@@ -80,7 +107,7 @@ body {
 .profile-img {
     width: 100%;
     height: 100%;
-    border-radius: 22px;
+    border-radius: 50%;
     object-fit: cover;
     border: 1px solid var(--gray);
     transform: translateZ(24px);
@@ -318,9 +345,9 @@ body.dark .name-caret {
     }
 
     .profile-frame {
-        width: 120px;
-        height: 120px;
-        border-radius: 22px;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
     }
 
     .card {
@@ -352,8 +379,8 @@ body.dark .name-caret {
     }
 
     .profile-frame {
-        width: 110px;
-        height: 110px;
+        width: 130px;
+        height: 130px;
     }
 
     .review-text {

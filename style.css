@@ -14,6 +14,37 @@ body {
     background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
     min-height: 100vh;
     transition: background 220ms ease, color 220ms ease;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    transform: translateZ(0);
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.9) 2px, transparent 2.8px),
+        radial-gradient(circle, rgba(255, 255, 255, 0.6) 2px, transparent 2.8px);
+    background-size: 36px 36px, 52px 52px;
+    background-position: 0 0, 18px 22px;
+    animation: twinkle 4s ease-in-out infinite;
+    opacity: 0.55;
+}
+
+body::after {
+    animation-duration: 6s;
+    opacity: 0.35;
+}
+
+body:not(.dark)::before,
+body:not(.dark)::after {
+    background-image:
+        radial-gradient(circle, rgba(0, 0, 0, 0.12) 2px, transparent 2.8px),
+        radial-gradient(circle, rgba(0, 0, 0, 0.08) 2px, transparent 2.8px);
 }
 
 .container {
@@ -121,11 +152,11 @@ body {
 }
 
 .card {
-    background: var(--card);
-    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.45);
+    border: 1.5px solid rgba(0, 0, 0, 0.18);
     border-radius: 22px;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(8px);
+    box-shadow: 0 22px 55px rgba(17, 17, 17, 0.22);
+    backdrop-filter: blur(22px) saturate(150%);
     transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease, color 220ms ease;
     will-change: transform;
     transform-style: preserve-3d;
@@ -240,6 +271,12 @@ body.dark .review-card {
 body.dark .ticker-item {
     background: #121212;
     border-color: #2a2a2a;
+}
+
+body.dark .card {
+    background: rgba(12, 12, 12, 0.45);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
 }
 
 body.dark .mode-toggle {
@@ -448,5 +485,23 @@ body.dark .tag-next {
     }
     100% {
         transform: translateX(-50%);
+    }
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0.2;
+        filter: blur(0px);
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        filter: blur(0.6px);
+        transform: scale(1.02);
+    }
+    100% {
+        opacity: 0.2;
+        filter: blur(0px);
+        transform: scale(1);
     }
 }

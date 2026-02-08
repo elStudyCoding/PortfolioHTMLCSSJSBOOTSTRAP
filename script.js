@@ -71,11 +71,15 @@ if (ticker && tickerTrack) {
 
 const modeToggle = document.getElementById("modeToggle");
 if (modeToggle) {
-    modeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
+    const syncModeLabel = () => {
         modeToggle.textContent = document.body.classList.contains("dark")
             ? "Light Mode"
             : "Dark Mode";
+    };
+    syncModeLabel();
+    modeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        syncModeLabel();
     });
 }
 

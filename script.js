@@ -134,8 +134,6 @@ if (heroName && heroNameText) {
 }
 const certModal = document.getElementById("certModal");
 const certModalImg = document.getElementById("certModalImg");
-const certModalClose = document.getElementById("certModalClose");
-
 if (certModal && certModalImg) {
     document.querySelectorAll(".cert-img").forEach((img) => {
         img.addEventListener("click", () => {
@@ -156,10 +154,6 @@ if (certModal && certModalImg) {
             closeModal();
         }
     });
-
-    if (certModalClose) {
-        certModalClose.addEventListener("click", closeModal);
-    }
 
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {

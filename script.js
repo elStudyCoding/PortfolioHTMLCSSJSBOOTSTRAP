@@ -18,14 +18,18 @@ function enableTilt(el, strength, moveX) {
     });
 }
 
+const isTouch = window.matchMedia("(hover: none)").matches;
+
 const frame = document.getElementById("profileFrame");
-if (frame) {
+if (!isTouch && frame) {
     enableTilt(frame, 12, 0);
 }
 
-document.querySelectorAll(".card").forEach((card) => {
-    enableTilt(card, 10, 6);
-});
+if (!isTouch) {
+    document.querySelectorAll(".card").forEach((card) => {
+        enableTilt(card, 10, 6);
+    });
+}
 
 const ticker = document.querySelector(".ticker");
 const tickerTrack = document.querySelector(".ticker-track");
@@ -107,22 +111,59 @@ if (heroName && heroNameText) {
 
     typeLoop();
 
-    heroName.addEventListener("mousemove", (e) => {
-        const rect = heroName.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const cx = rect.width / 2;
-        const cy = rect.height / 2;
-        const dx = (x - cx) / cx;
-        const dy = (y - cy) / cy;
-        const rotateX = (-dy * 8).toFixed(2);
-        const rotateY = (dx * 8).toFixed(2);
-        heroName.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        heroName.style.textShadow = "0 8px 18px rgba(17, 17, 17, 0.18)";
+    if (!isTouch) {
+        heroName.addEventListener("mousemove", (e) => {
+            const rect = heroName.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const cx = rect.width / 2;
+            const cy = rect.height / 2;
+            const dx = (x - cx) / cx;
+            const dy = (y - cy) / cy;
+            const rotateX = (-dy * 8).toFixed(2);
+            const rotateY = (dx * 8).toFixed(2);
+            heroName.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            heroName.style.textShadow = "0 8px 18px rgba(17, 17, 17, 0.18)";
+        });
+
+        heroName.addEventListener("mouseleave", () => {
+            heroName.style.transform = "rotateX(0deg) rotateY(0deg)";
+            heroName.style.textShadow = "none";
+        });
+    }
+}
+const certModal = document.getElementById("certModal");
+const certModalImg = document.getElementById("certModalImg");
+const certModalClose = document.getElementById("certModalClose");
+
+if (certModal && certModalImg) {
+    document.querySelectorAll(".cert-img").forEach((img) => {
+        img.addEventListener("click", () => {
+            certModalImg.src = img.src;
+            certModal.classList.add("show");
+            certModal.setAttribute("aria-hidden", "false");
+        });
     });
 
-    heroName.addEventListener("mouseleave", () => {
-        heroName.style.transform = "rotateX(0deg) rotateY(0deg)";
-        heroName.style.textShadow = "none";
+    const closeModal = () => {
+        certModal.classList.remove("show");
+        certModal.setAttribute("aria-hidden", "true");
+        certModalImg.src = "";
+    };
+
+    certModal.addEventListener("click", (e) => {
+        if (e.target === certModal) {
+            closeModal();
+        }
+    });
+
+    if (certModalClose) {
+        certModalClose.addEventListener("click", closeModal);
+    }
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            closeModal();
+        }
     });
 }

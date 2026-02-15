@@ -1,3 +1,70 @@
+const loginOverlay = document.getElementById("loginOverlay");
+const portfolioContent = document.getElementById("portfolioContent");
+const loginStartButton = document.getElementById("loginStartButton");
+const loginStatus = document.getElementById("loginStatus");
+const loginProgressBar = document.getElementById("loginProgressBar");
+const loginPanel = document.querySelector(".login-panel");
+const loginSpacer = document.getElementById("loginSpacer");
+const urlParams = new URLSearchParams(window.location.search);
+
+const unlockPortfolio = () => {
+    if (loginOverlay) {
+        loginOverlay.classList.add("hidden");
+        loginOverlay.setAttribute("aria-hidden", "true");
+    }
+    if (portfolioContent) {
+        portfolioContent.classList.add("is-visible");
+        portfolioContent.setAttribute("aria-hidden", "false");
+    }
+    if (loginSpacer) {
+        loginSpacer.classList.add("collapse");
+        window.setTimeout(() => {
+            loginSpacer.remove();
+        }, 540);
+    }
+    document.body.style.overflowY = "auto";
+    sessionStorage.setItem("portfolioUnlocked", "1");
+};
+
+if (urlParams.get("skipLogin") === "1") {
+    unlockPortfolio();
+} else if (sessionStorage.getItem("portfolioUnlocked") === "1") {
+    unlockPortfolio();
+} else {
+    document.body.style.overflowY = "hidden";
+    if (loginStartButton) {
+        loginStartButton.addEventListener("click", () => {
+            if (loginPanel) {
+                loginPanel.classList.add("is-loading");
+            }
+            if (loginStatus) {
+                loginStatus.textContent = "Status: Memproses login...";
+            }
+            if (loginProgressBar) {
+                loginProgressBar.style.width = "100%";
+            }
+            window.setTimeout(() => {
+                if (loginStatus) {
+                    loginStatus.textContent = "Status: Akses diterima";
+                }
+                document.body.style.overflowY = "auto";
+                if (loginOverlay) {
+                    loginOverlay.classList.add("exiting");
+                }
+                if (portfolioContent) {
+                    window.scrollTo({
+                        top: portfolioContent.offsetTop,
+                        behavior: "smooth"
+                    });
+                }
+                window.setTimeout(() => {
+                    unlockPortfolio();
+                }, 620);
+            }, 1100);
+        });
+    }
+}
+
 function enableTilt(el, strength, moveX) {
     el.addEventListener("mousemove", (e) => {
         const rect = el.getBoundingClientRect();
@@ -29,6 +96,25 @@ if (!isTouch) {
     document.querySelectorAll(".card").forEach((card) => {
         enableTilt(card, 10, 6);
     });
+
+    document.querySelectorAll("#sertifikat .cert-card").forEach((certCard) => {
+        enableTilt(certCard, 9, 4);
+    });
+}
+
+if (document.body.classList.contains("page-home")) {
+    const certItems = Array.from(document.querySelectorAll("#sertifikat [data-cert-item]"));
+    const certMoreLink = document.getElementById("certMoreLink");
+    const maxShown = 4;
+
+    if (certItems.length > maxShown) {
+        certItems.slice(maxShown).forEach((item) => {
+            item.classList.add("d-none");
+        });
+        if (certMoreLink) {
+            certMoreLink.classList.remove("d-none");
+        }
+    }
 }
 
 const ticker = document.querySelector(".ticker");
@@ -161,3 +247,18 @@ if (certModal && certModalImg) {
         }
     });
 }
+
+document.querySelectorAll(".quick-nav-links a").forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+        const targetId = anchor.getAttribute("href");
+        if (!targetId || !targetId.startsWith("#")) {
+            return;
+        }
+        const section = document.querySelector(targetId);
+        if (!section) {
+            return;
+        }
+        e.preventDefault();
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+});

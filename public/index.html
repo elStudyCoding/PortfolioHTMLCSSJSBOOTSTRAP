@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio Ariel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <noscript>
+        <style>
+            .login-overlay { display: none !important; }
+            .login-spacer { display: none !important; }
+            .portfolio-content { opacity: 1 !important; transform: none !important; filter: none !important; pointer-events: auto !important; }
+        </style>
+    </noscript>
+</head>
+<body class="dark page-home">
+
+<div class="login-overlay" id="loginOverlay" aria-hidden="false">
+    <div class="login-panel">
+        <p class="login-eyebrow mb-2">Portfolio Access</p>
+        <h2 class="login-title mb-2">Masuk Ke Halaman Utama</h2>
+        <p class="login-subtitle mb-4">Tekan tombol login untuk masuk ke portfolio.</p>
+        <div class="login-form">
+            <div class="login-status" id="loginStatus">Status: Siap</div>
+            <div class="login-progress" aria-hidden="true">
+                <span id="loginProgressBar"></span>
+            </div>
+            <button class="login-button" id="loginStartButton" type="button">Mulai Login</button>
+        </div>
+    </div>
+</div>
+
+<div id="loginSpacer" class="login-spacer" aria-hidden="true"></div>
+
+<main id="portfolioContent" class="container py-5 portfolio-content" aria-hidden="true">
+    <div class="d-flex justify-content-end mb-3">
+        <button class="mode-toggle" id="modeToggle" type="button" aria-label="Toggle dark mode">
+            Dark Mode
+        </button>
+    </div>
+
+    <header class="text-center mb-5">
+        <p class="eyebrow mb-2">Portfolio</p>
+        <h1 class="display-5 fw-bold text-primary name" id="heroName" data-full="Nazriel Ilhamsyah">
+            <span id="heroNameText">Nazriel Ilhamsyah</span>
+            <span class="name-caret" aria-hidden="true"></span>
+        </h1>
+        <p class="text-secondary lead mb-0">Student RPL || Web Developer</p>
+    </header>
+
+    <section class="ticker card soft-card mb-5" aria-label="Tech stack running text">
+        <div class="ticker-track">
+            <span class="ticker-item tag-react">React</span>
+            <span class="ticker-item tag-next">Next.js</span>
+            <span class="ticker-item tag-php">PHP</span>
+            <span class="ticker-item tag-mysql">MySQL</span>
+            <span class="ticker-item tag-js">JavaScript</span>
+            <span class="ticker-item tag-python">Python</span>
+            <span class="ticker-item tag-html">HTML</span>
+            <span class="ticker-item tag-css">CSS</span>
+            <span class="ticker-item tag-react">React</span>
+            <span class="ticker-item tag-next">Next.js</span>
+            <span class="ticker-item tag-php">PHP</span>
+            <span class="ticker-item tag-mysql">MySQL</span>
+            <span class="ticker-item tag-js">JavaScript</span>
+            <span class="ticker-item tag-python">Python</span>
+            <span class="ticker-item tag-html">HTML</span>
+            <span class="ticker-item tag-css">CSS</span>
+        </div>
+    </section>
+
+    <section class="row g-4 align-items-center mb-5" id="biografi">
+        <div class="col-12 col-md-4 text-center">
+            <div class="profile-frame" id="profileFrame">
+                <img class="profile-img" src="image/Profile.jpeg" alt="Profile">
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            <div class="card soft-card h-100">
+                <div class="card-body">
+                    <h2 class="card-title h6 text-uppercase">Biografi</h2>
+                    <ul class="list-unstyled card-text mb-2">
+                        <li>Nama: Nazriel Ilhamsyah</li>
+                        <li>Kota tinggal: Probolinggo</li>
+                        <li>Tanggal lahir: 30 Juli 2008</li>
+                    </ul>
+                    <ul class="list-unstyled card-text mb-0">
+                        <li>SD: SDN Kebonsari Kulon 3</li>
+                        <li>SMP: SMPN 2 Probolinggo</li>
+                        <li>SMK: SMKN 1 Probolinggo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="row g-4 mb-4" id="tentang">
+        <div class="col-12 col-md-6">
+            <div class="card soft-card h-100">
+                <div class="card-body">
+                    <h2 class="card-title h6 text-uppercase">Tentang Saya</h2>
+                    <p class="card-text mb-0">
+                        Saya adalah siswa jurusan Rekayasa Perangkat Lunak yang memiliki
+                        minat besar pada pengembangan web, AI, dan teknologi modern.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card soft-card h-100">
+                <div class="card-body">
+                    <h2 class="card-title h6 text-uppercase">Keahlian</h2>
+                    <ul class="list-group list-group-flush clean-list">
+                        <li class="list-group-item">HTML & CSS</li>
+                        <li class="list-group-item">JavaScript + Framework</li>
+                        <li class="list-group-item">PHP</li>
+                        <li class="list-group-item">AI Tools</li>
+                        <li class="list-group-item">Promting Engineer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-4 cert-section" id="sertifikat">
+        <div class="cert-section-head mb-3">
+            <h2 class="card-title h6 text-uppercase text-center mb-0">Sertifikat Saya</h2>
+            <a id="certMoreLink" class="cert-more-link d-none" href="sertifikat.html">Lihat semua sertifikat</a>
+        </div>
+        <div class="row g-3">
+            <div class="col-12 col-md-6" data-cert-item>
+                <div class="cert-card h-100">
+                    <img class="cert-img" src="image/Sertifikat1.jpg" alt="Dasar AI">
+                    <p class="cert-title">Dasar AI</p>
+                    <p class="cert-meta">Penyelenggara: - | Tahun: 2025</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6" data-cert-item>
+                <div class="cert-card h-100">
+                    <img class="cert-img" src="image/Sertifikat2.jpg" alt="Dasar Pemrograman Web">
+                    <p class="cert-title">Dasar Pemrograman Web</p>
+                    <p class="cert-meta">Penyelenggara: - | Tahun: 2025</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6" data-cert-item>
+                <div class="cert-card h-100">
+                    <img class="cert-img" src="image/Sertifikat3.jpg" alt="Hardware Fundamental">
+                    <p class="cert-title">Hardware Fundamental</p>
+                    <p class="cert-meta">Penyelenggara: - | Tahun: 2025</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6" data-cert-item>
+                <div class="cert-card h-100">
+                    <img class="cert-img" src="image/Sertifikat4.jpg" alt="Eksplorasi AI">
+                    <p class="cert-title">Eksplorasi AI</p>
+                    <p class="cert-meta">Penyelenggara: - | Tahun: 2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="card soft-card mb-4" id="review">
+        <div class="card-body">
+            <h2 class="card-title h6 text-uppercase text-center">Review Portfolio</h2>
+            <div class="row g-3 mt-2">
+                <div class="col-12 col-md-6">
+                    <div class="review-card">
+                        <p class="review-text">Layout-nya rapi dan modern. Animasi 3D halus, bikin portfolio terasa premium.</p>
+                        <p class="review-name">Saadan</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="review-card">
+                        <p class="review-text">Pemilihan warna netral bikin fokus ke konten. Ticker teknologi keren dan informatif.</p>
+                        <p class="review-name">Abi</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="review-card">
+                        <p class="review-text">Tipografi artistik tapi tetap terbaca. Section biografi kiri-kanan terlihat profesional.</p>
+                        <p class="review-name">Neezar</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="review-card">
+                        <p class="review-text">Gaya minimalisnya kuat. Micro-interaction di card terasa hidup tanpa berlebihan.</p>
+                        <p class="review-name">Mahesa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ticker card soft-card mb-4" aria-label="Pesan running text">
+        <div class="ticker-track">
+            <span class="ticker-item tag-name">Saadan &middot; Mantap bro, clean dan modern!</span>
+            <span class="ticker-item tag-name">Abi &middot; Keep it up, tampilannya kece!</span>
+            <span class="ticker-item tag-name">Neezar &middot; Animasi smooth, good job!</span>
+            <span class="ticker-item tag-name">Mahesa &middot; Portfolio kamu berkelas.</span>
+            <span class="ticker-item tag-name">Mita &middot; Suka banget dengan layout-nya.</span>
+            <span class="ticker-item tag-name">Nazil &middot; Terlihat profesional dan rapi.</span>
+            <span class="ticker-item tag-name">Mr.Shinata &middot; Nice work, lanjutkan!</span>
+            <span class="ticker-item tag-name">Saadan &middot; Mantap bro, clean dan modern!</span>
+            <span class="ticker-item tag-name">Abi &middot; Keep it up, tampilannya kece!</span>
+            <span class="ticker-item tag-name">Neezar &middot; Animasi smooth, good job!</span>
+            <span class="ticker-item tag-name">Mahesa &middot; Portfolio kamu berkelas.</span>
+            <span class="ticker-item tag-name">Mita &middot; Suka banget dengan layout-nya.</span>
+            <span class="ticker-item tag-name">Nazil &middot; Terlihat profesional dan rapi.</span>
+            <span class="ticker-item tag-name">Mr.Shinata &middot; Nice work, lanjutkan!</span>
+        </div>
+    </section>
+
+    <section class="link-hub card soft-card mb-4" id="kontak" aria-label="Navigasi dan social links">
+        <div class="card-body">
+            <div class="row g-3 align-items-start">
+                <div class="col-12 col-md-6">
+                    <p class="quick-nav-title mb-2">Navigation</p>
+                    <nav class="quick-nav-links">
+                        <a href="#biografi">Biografi</a>
+                        <a href="#tentang">Tentang</a>
+                        <a href="#sertifikat">Sertifikat</a>
+                        <a href="#review">Review</a>
+                        <a href="#kontak">Kontak</a>
+                    </nav>
+                </div>
+                <div class="col-12 col-md-6">
+                    <p class="quick-nav-title mb-2">Social</p>
+                    <div class="social-bar social-bar-right" aria-label="Social links">
+                        <a class="social-link" href="https://instagram.com/ellmanusia" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-3.3a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0z"/></svg>
+                            <span>Instagram</span>
+                        </a>
+                        <a class="social-link" href="https://github.com/elStudyCoding" target="_blank" rel="noopener" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.77.6-3.35-1.17-3.35-1.17-.45-1.14-1.1-1.45-1.1-1.45-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.63-1.34-2.21-.26-4.54-1.1-4.54-4.9 0-1.08.39-1.96 1.03-2.65-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.41.2 2.45.1 2.71.64.69 1.03 1.57 1.03 2.65 0 3.81-2.33 4.64-4.56 4.9.36.31.68.92.68 1.86v2.76c0 .26.18.57.69.48A10 10 0 0 0 12 2z"/></svg>
+                            <span>GitHub</span>
+                        </a>
+                        <a class="social-link" href="mailto:arieldevicelaptop@gmail.com" aria-label="Email">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm0 2v.2l8 5 8-5V7H4zm16 10V9.5l-7.47 4.67a1 1 0 0 1-1.06 0L4 9.5V17h16z"/></svg>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer mt-4">
+        <p class="mb-0">&copy; 2026 Nazriel Portfolio</p>
+    </footer>
+
+</main>
+
+<div class="cert-modal" id="certModal" aria-hidden="true">
+    <img class="cert-modal-img" id="certModalImg" alt="Preview Sertifikat">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
